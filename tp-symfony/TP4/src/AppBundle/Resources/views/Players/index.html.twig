@@ -1,7 +1,37 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}AppBundle:Players:index{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Players:index page</h1>
+<h2>Liste des joueurs</h2>
+
+<a href="{{ path('players_add') }}">Ajouter un joueur</a>
+
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>Prénom</th>
+    <th>Nom</th>
+    <th>Age</th>
+    <th>Taille</th>
+    <th>Poids</th>
+    <th>Équipe</th>
+    <th>Actions</th>
+  </tr>
+  <tr>
+    {% for p in players %}
+      <td>{{ p.firstname }}</td>
+      <td>{{ p.lastname }}</td>
+      <td>{{ p.age }}</td>
+      <td>{{ p.height }}</td>
+      <td>{{ p.weight }}</td>
+      <td>
+        {% if p.team %}
+          {{ p.team.name }}
+        {% endif %}
+      </td>
+    <td>
+      <a href="{{ path('players_edit', {'id' : p.id}) }}" class="btn btn-warning btn-xs">Modifier</a>
+      <a href="{{ path('players_delete', {'id' : p.id}) }}" class="btn btn-danger btn-xs">Supprimer</a>
+    </td>
+  </tr>{% endfor %}
+</table>
 {% endblock %}

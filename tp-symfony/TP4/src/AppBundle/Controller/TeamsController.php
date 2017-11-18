@@ -74,21 +74,31 @@ class TeamsController extends Controller
     /**
      * @Route("/edit/{id}", name="teams_edit")
      */
-    public function editAction($id, Request $request)
-
-      $em = $this->getDoctrine()->getManager()
+    public function editAction($id, Request $request) {
+      $em = $this->getDoctrine()->getManager();
       $team = $em->getRepository(Teams::class)->find($id);
       //appeler getRepository depuis getManager établit une connexion, une visibilité entre le repo et le manager. Ici, le manager est au courant, est notifié de l'existence de l'objet fruit, si cet objet change (cad reçoit de nouvelles valeurs), le manager le sait. Le manager surveille cet objet.
+      $teamformEdit = $this->createFormBuilder($team)
+      ->add('name', TextType::class)
+      ->add('city', TextType::class)
+      ->add('submit', SubmitType::class, array(
+        'label' => 'Mettre à jour',
+        'attr' => array('class' => 'btn btn-primary btn-xs')
+      ))
+      ->getForm();
+
+      $teamformEdit->handleRequest($request);
       if($request->getMethod() == 'POST') {
-        $team->setName($request->request->get('name'));
-        $team->setCity($request->request->get('city'));
-         $em->flush();
-         
+        $team = $teamformEdit->getData();
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($team);
+        $em->flush();
+
          return $this->redirectToRoute('teams_index');
         } // le manager exécutera la reqûete sql appropriée si l'objet $fruit a été modifié.
 
         return $this->render('AppBundle:Teams:edit.html.twig', array(
-        'team' => $team
+        'teamformEdit' => $teamformEdit->createView()
         ));
     }
 
