@@ -2,7 +2,10 @@
 
 
 {% block body %}
-<h2>Liste des joueurs</h2>
+
+<div class="title2">
+  <h2>Liste des joueurs</h2>
+</div>
 
 <a href="{{ path('players_add') }}">Ajouter un joueur</a>
 
@@ -29,8 +32,8 @@
         {% endif %}
       </td>
     <td>
-      <a href="{{ path('players_edit', {'id' : p.id}) }}" class="btn btn-warning btn-xs">Modifier</a>
-      <a href="{{ path('players_delete', {'id' : p.id}) }}" class="btn btn-danger btn-xs">Supprimer</a>
+      <a href="{{ path('players_edit', {'id' : p.id}) }}" class="btn btn-xs">Modifier</a>
+      <a href="{{ path('players_delete', {'id' : p.id}) }}" class="btn btn-xs">Supprimer</a>
     </td>
   </tr>{% endfor %}
 </table>

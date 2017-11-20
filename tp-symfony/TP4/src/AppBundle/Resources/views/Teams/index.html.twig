@@ -2,7 +2,11 @@
 
 
 {% block body %}
-<h2>Liste des équipes :</h2>
+
+<div class="title2">
+  <h2>Liste des équipes :</h2>
+</div>
+
 <a class="btn btn-primary" href="{{ path('teams_add') }}">Ajouter une équipe</a>
 <table class="table table-striped table-bordered">
   <tr>
@@ -15,8 +19,8 @@
         <td>{{ t.name }}</td>
         <td>{{ t.city }}</td>
         <td>
-          <a class="btn btn-warning btn-xs" href="{{ path('teams_edit', {'id' : t.id}) }}">Modifier</a>
-          <a class="btn btn-danger btn-xs" href="{{ path('teams_delete', {'id' : t.id}) }}">Supprimer</a>
+          <a class="btn btn-xs" href="{{ path('teams_edit', {'id' : t.id}) }}">Modifier</a>
+          <a class="btn btn-xs" href="{{ path('teams_delete', {'id' : t.id}) }}">Supprimer</a>
         </td>
     </tr>
   {% endfor %}

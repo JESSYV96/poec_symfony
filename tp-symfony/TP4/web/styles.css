@@ -1,0 +1,35 @@
+header {
+    background-color: #FF6924;
+}
+nav li a {
+  display: inline-block;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+.container {
+  font-family: 'Actor', sans-serif;
+  width: 850px;
+}
+.title2 {
+  padding-top: 3%;
+}
+h2 {
+  text-align: center;
+}
+h3 {
+ font-weight: bold;
+}
+.banner-header {
+  text-align: center;
+}
+.banner-img {
+  width: 700px;
+}
+
+.footer-p {
+  width: 850px;
+  text-align: center;
+  color: #FF6924;
+  background-color: #F2F2F2;
+}
