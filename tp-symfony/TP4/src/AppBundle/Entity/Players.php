@@ -61,6 +61,14 @@ class Players
     *@ORM\JoinColumn(name="team_id", referencedColumnName="id")
     */
     private $team;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", length=255)
+     */
+    private $picture;
+
     /**
      * Get id
      *
@@ -213,5 +221,29 @@ class Players
     public function getTeam()
     {
         return $this->team;
+    }
+
+    /**
+     * Set picture
+     *
+     * @param string $picture
+     *
+     * @return Players
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
     }
 }

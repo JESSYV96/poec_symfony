@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use AppBundle\Entity\Teams;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,6 +36,7 @@ class TeamsController extends Controller
       $teamform = $this->createFormBuilder($team)
       ->add('name', TextType::class)
       ->add('city', TextType::class)
+      ->add('logo', FileType::class, array('label' => 'Logo de l\'équipe'))
       ->add('submit', SubmitType::class, array(
         'label' => 'Enregistrer',
         'attr' => array('class' => 'btn btn-primary btn-xs')
@@ -46,6 +48,12 @@ class TeamsController extends Controller
     if($teamform->isSubmitted()) {
 
       $team = $teamform->getData(); //permet l'hydratation automatique
+      $logo = $team->getLogo();
+      $logoname = 'logo_'. strtolower($team->getName()) . '.' . $logo->guessExtension();
+
+      $logo->move($this->getParameter('dir_logo'), $logoname);
+      $team->setLogo($logoname);
+
       //enregistrement en db
       $em = $this->getDoctrine()->getManager();
       $em->persist($team);
@@ -81,6 +89,7 @@ class TeamsController extends Controller
       $teamformEdit = $this->createFormBuilder($team)
       ->add('name', TextType::class)
       ->add('city', TextType::class)
+      ->add('logo', FileType::class, array('label' => 'Logo de l\'équipe'))
       ->add('submit', SubmitType::class, array(
         'label' => 'Mettre à jour',
         'attr' => array('class' => 'btn btn-primary btn-xs')

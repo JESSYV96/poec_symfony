@@ -44,6 +44,14 @@ class Teams
      *
      * @return int
      */
+
+   /**
+    * @var string
+    *
+    * @ORM\Column(name="logo", type="string", length=255)
+    */
+    private $logo;
+
     public function getId()
     {
         return $this->id;
@@ -136,5 +144,29 @@ class Teams
     public function getPlayers()
     {
         return $this->players;
+    }
+
+    /**
+     * Set logo
+     *
+     * @param string $logo
+     *
+     * @return Teams
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * Get logo
+     *
+     * @return string
+     */
+    public function getLogo()
+    {
+        return $this->logo;
     }
 }

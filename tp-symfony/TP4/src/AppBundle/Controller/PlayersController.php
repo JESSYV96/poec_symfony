@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use AppBundle\Entity\Teams;
 use AppBundle\Entity\Players;
@@ -57,6 +58,9 @@ class PlayersController extends Controller
         'class' => 'AppBundle:Teams',
         'choice_label' => 'name'
       ))
+      ->add('picture', FileType::class, array(
+        'label' => 'Photo du joueur'
+      ))
       ->add('submit', SubmitType::class, array(
         'label' => 'Enregistrer',
         'attr' => array('class' => 'btn btn-primary btn-xs')
@@ -66,6 +70,13 @@ class PlayersController extends Controller
       $playerform->handleRequest($request);
       if($playerform->isSubmitted()) {
         $player = $playerform->getData();
+
+        $pic = $player->getPicture();
+        $picname = 'pic_' . strtolower($player->getFirstName()) . '_' . $player->getLastName() . '.' . $pic->guessExtension();
+
+        $pic->move($this->getParameter('dir_picture'), $picname);
+        $player->setPicture($picname);
+
         $em = $this->getDoctrine()->getManager();
         $em->persist($player);
         $em->flush();
@@ -121,6 +132,9 @@ class PlayersController extends Controller
         'class' => 'AppBundle:Teams',
         'choice_label' => 'name'
       ))
+      ->add('picture', FileType::class, array(
+        'label' => 'Photo du joueur'
+      ))
       ->add('submit', SubmitType::class, array(
         'label' => 'Mettre à jour',
         'attr' => array('class' => 'btn btn-primary btn-xs')
@@ -130,6 +144,13 @@ class PlayersController extends Controller
       $playerformEdit->handleRequest($request);
       if($request->getMethod() == 'POST') {
         $player = $playerformEdit->getData();
+
+        $pic = $player->getPicture();
+        $picname = 'pic_' . strtolower($player->getFirstName()) . '_' . $player->getLastName() . '.' . $pic->guessExtension();
+
+        $pic->move($this->getParameter('dir_picture'), $picname);
+        $player->setPicture($picname);
+
         $em = $this->getDoctrine()->getManager();
         $em->persist($player);
         $em->flush();

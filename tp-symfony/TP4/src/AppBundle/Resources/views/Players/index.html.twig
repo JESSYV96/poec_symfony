@@ -11,6 +11,7 @@
 
 <table class="table table-striped table-bordered">
   <tr>
+    <th>Portrait</th>
     <th>Prénom</th>
     <th>Nom</th>
     <th>Age</th>
@@ -21,6 +22,11 @@
   </tr>
   <tr>
     {% for p in players %}
+      <td>
+        {% if p.picture %}
+        <img src="{{ asset('/img/player_picture/') ~ p.picture }}">
+        {% endif %}
+      </td>
       <td>{{ p.firstname }}</td>
       <td>{{ p.lastname }}</td>
       <td>{{ p.age }}</td>

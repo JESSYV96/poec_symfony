@@ -44,6 +44,14 @@ class Teams
      *
      * @return int
      */
+
+   /**
+    * @var string
+    *
+    * @ORM\Column(name="logo", type="string", length=255)
+    */
+    private $logo;
+
     public function getId()
     {
         return $this->id;
@@ -95,5 +103,46 @@ class Teams
     public function getCity()
     {
         return $this->city;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->players = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add player
+     *
+     * @param \AppBundle\Entity\Players $player
+     *
+     * @return Teams
+     */
+    public function addPlayer(\AppBundle\Entity\Players $player)
+    {
+        $this->players[] = $player;
+
+        return $this;
+    }
+
+    /**
+     * Remove player
+     *
+     * @param \AppBundle\Entity\Players $player
+     */
+    public function removePlayer(\AppBundle\Entity\Players $player)
+    {
+        $this->players->removeElement($player);
+    }
+
+    /**
+     * Get players
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlayers()
+    {
+        return $this->players;
     }
 }
