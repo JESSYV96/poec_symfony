@@ -16,7 +16,9 @@
     <body>
       <header class="banner-header">
         <img src="{{ asset('basketix-orange.jpg')}}" alt="basketix.com" class="banner-img">
-        <nav>
+
+      </header>
+      <nav>
           <ul class="navbar">
             <li>
               <a href="{{ path('homepage') }}">Accueil</a>
@@ -32,7 +34,6 @@
             </li>
           </ul>
         </nav>
-      </header>
         <div class="container">
         {% block body %}{% endblock %}
        </div>

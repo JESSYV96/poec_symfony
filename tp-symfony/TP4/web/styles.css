@@ -4,12 +4,14 @@
 header {
     background-color: var(--color-orange);
 }
-header nav {
+nav {
+  background-color: var(--color-orange);
+  color: white;
   width: 100%;
   height: 40px;
   position: -webkit-sticky;
   position: sticky;
-  top: 70px;
+  top: 0px;
 }
 .navbar_fixed {
   height: 40px;
@@ -17,8 +19,8 @@ header nav {
 
 }
 nav ul {
-  display: flex;
-  position: fixed;
+  width: 70%;
+  margin: auto;
 }
 nav li {
   list-style-type : none;
