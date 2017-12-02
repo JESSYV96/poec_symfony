@@ -2,10 +2,11 @@
 <html>
     <head lang="fr">
         <meta charset="UTF-8" />
-        <title>Basketix</title>
+        <title>
+          {% block title %}{% endblock title %}
+        </title>
         <link rel="icon" type="image/x-icon" href="{{ asset('sports.png') }}" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ asset('styles.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
         <script type="text/javascript" src="{{asset('js/jquery-3.2.1.min.js')}}"></script><script type="text/javascript" src="{{ asset('js/script.js')}}">
         </script>
@@ -18,7 +19,7 @@
         <img src="{{ asset('basketix-orange.jpg')}}" alt="basketix.com" class="banner-img">
 
       </header>
-      <nav>
+      <nav class="navbar-main">
           <ul class="navbar">
             <li>
               <a href="{{ path('homepage') }}">Accueil</a>
