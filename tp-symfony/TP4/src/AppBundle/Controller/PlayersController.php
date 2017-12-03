@@ -72,7 +72,7 @@ class PlayersController extends Controller
         $player = $playerform->getData();
 
         $pic = $player->getPicture();
-        $picname = 'pic_' . strtolower($player->getFirstName()) . '_' . $player->getLastName() . '.' . $pic->guessExtension();
+        $picname = 'pic_' . strtolower($player->getFirstName()) . '_' . strtolower($player->getLastName()) . '.' . $pic->guessExtension();
 
         $pic->move($this->getParameter('dir_picture'), $picname);
         $player->setPicture($picname);

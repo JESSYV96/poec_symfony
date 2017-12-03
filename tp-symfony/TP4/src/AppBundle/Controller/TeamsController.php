@@ -93,12 +93,18 @@ class TeamsController extends Controller
       ->add('submit', SubmitType::class, array(
         'label' => 'Mettre à jour',
         'attr' => array('class' => 'btn btn-primary btn-xs')
-      ))
+          ))
       ->getForm();
 
       $teamformEdit->handleRequest($request);
       if($request->getMethod() == 'POST') {
         $team = $teamformEdit->getData();
+
+        $logo = $team->getLogo();
+        $logoname = 'logo_'. strtolower($team->getName()) . '.' . $logo->guessExtension();
+        $logo->move($this->getParameter('dir_logo'), $logoname);
+        $team->setLogo($logoname);
+
         $em = $this->getDoctrine()->getManager();
         $em->persist($team);
         $em->flush();
