@@ -1,0 +1,31 @@
+.btn {
+  background-color: $color-main-orange;
+  padding: 6px;
+  @include border-radius(3px);
+
+  .btntext {
+    color: $color-light-grey;
+    text-decoration: none;
+    font-weight: bold;
+  }
+}
+.editbtn {
+  padding: 3px;
+  @include border-radius(3px);
+  background-color: $color-dark-blue;
+
+  .editbtntext {
+    text-decoration: none;
+    color: $color-light-grey;
+  }
+}
+.deletebtn {
+  padding: 3px;
+  @include border-radius(3px);
+  background-color: $color-red;
+
+    .deletebtntext {
+      text-decoration: none;
+      color: $color-light-grey;
+  }
+}

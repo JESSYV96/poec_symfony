@@ -7,40 +7,55 @@
   <h2>Liste des joueurs</h2>
 </div>
 
-<a href="{{ path('players_add') }}">Ajouter un joueur</a>
+<span class="btn"><a class="btntext" href="{{ path('players_add') }}">Ajouter un joueur</a></span>
+<br>
+<br>
+<table class="table">
+     <tr>
+      <th>Portrait</th>
+      <th>Prénom</th>
+      <th>Nom</th>
+      <th>Age</th>
+      <th>Taille</th>
+      <th>Poids</th>
+      <th>Équipe</th>
+      <th>Actions</th>
+    </tr>
 
-<table class="table table-striped table-bordered">
-  <tr>
-    <th>Portrait</th>
-    <th>Prénom</th>
-    <th>Nom</th>
-    <th>Age</th>
-    <th>Taille</th>
-    <th>Poids</th>
-    <th>Équipe</th>
-    <th>Actions</th>
-  </tr>
-  <tr>
+<tr>
     {% for p in players %}
+
+        <td>
+          {% if p.picture %}
+          <img src="{{ asset('/img/player_picture/') ~ p.picture }}" class="img-player">
+          {% endif %}
+        </td>
+        <td>{{ p.firstname }}</td>
+        <td>{{ p.lastname }}</td>
+        <td>{{ p.age }}</td>
+        <td>{{ p.height }}</td>
+        <td>{{ p.weight }}</td>
+        <td>
+          {% if p.team %}
+            {{ p.team.name }}
+          {% endif %}
+        </td>
       <td>
-        {% if p.picture %}
-        <img src="{{ asset('/img/player_picture/') ~ p.picture }}">
-        {% endif %}
+        <span class="editbtn"><a class="editbtntext" href="{{ path('players_edit', {'id' : p.id}) }}" class="editbtntext">Modifier</a></span>
+        <span class="deletebtn"><a class="deletebtntext" href="{{ path('players_delete', {'id' : p.id}) }}" class="deletebtntext">Supprimer</a></span>
       </td>
-      <td>{{ p.firstname }}</td>
-      <td>{{ p.lastname }}</td>
-      <td>{{ p.age }}</td>
-      <td>{{ p.height }}</td>
-      <td>{{ p.weight }}</td>
-      <td>
-        {% if p.team %}
-          {{ p.team.name }}
-        {% endif %}
-      </td>
-    <td>
-      <a href="{{ path('players_edit', {'id' : p.id}) }}" class="btn btn-xs">Modifier</a>
-      <a href="{{ path('players_delete', {'id' : p.id}) }}" class="btn btn-xs">Supprimer</a>
-    </td>
-  </tr>{% endfor %}
+    </tr>{% endfor %}
+    <tr>
+     <th>Portrait</th>
+     <th>Prénom</th>
+     <th>Nom</th>
+     <th>Age</th>
+     <th>Taille</th>
+     <th>Poids</th>
+     <th>Équipe</th>
+     <th>Actions</th>
+   </tr>
+
+
 </table>
 {% endblock %}

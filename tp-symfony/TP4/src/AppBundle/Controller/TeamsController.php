@@ -89,7 +89,10 @@ class TeamsController extends Controller
       $teamformEdit = $this->createFormBuilder($team)
       ->add('name', TextType::class)
       ->add('city', TextType::class)
-      ->add('logo', FileType::class, array('label' => 'Logo de l\'équipe'))
+      ->add('logo', FileType::class, array(
+        'label' => 'Logo de l\'équipe',
+        'data_class' => null
+        ))
       ->add('submit', SubmitType::class, array(
         'label' => 'Mettre à jour',
         'attr' => array('class' => 'btn btn-primary btn-xs')

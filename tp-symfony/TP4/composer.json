@@ -50,7 +50,9 @@
         ],
         "post-update-cmd": [
             "@symfony-scripts"
-        ]
+        ],
+        "sass": "sass web/sass/main.scss:web/css/styles.css",
+        "sass-watch": "sass --watch web/sass/main.scss:web/css/styles.css"
     },
     "config": {
         "sort-packages": true

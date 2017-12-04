@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,WAAW;EACP,SAAS,EAAE,KAAK",
+"sources": ["../web/sass/base/_img.scss"],
+"names": [],
+"file": "styles.css"
+}

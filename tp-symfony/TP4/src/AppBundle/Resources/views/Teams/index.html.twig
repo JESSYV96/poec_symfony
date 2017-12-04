@@ -7,8 +7,11 @@
 <div class="title2">
   <h2>Liste des équipes :</h2>
 </div>
-
-<a class="btn" href="{{ path('teams_add') }}">Ajouter une équipe</a>
+<span class="btn">
+<a class="btntext" href="{{ path('teams_add') }}">Ajouter une équipe</a>
+</span>
+<br>
+<br>
 <table class="table">
   <tr>
     <th>Logo</th>
@@ -22,8 +25,8 @@
         <td>{{ t.name }}</td>
         <td>{{ t.city }}</td>
         <td>
-          <a class="btn" href="{{ path('teams_edit', {'id' : t.id}) }}">Modifier</a>
-          <a class="btn" href="{{ path('teams_delete', {'id' : t.id}) }}">Supprimer</a>
+          <span class="editbtn"><a class="editbtntext" href="{{ path('teams_edit', {'id' : t.id}) }}">Modifier</a></span>
+          <span class="deletebtn"><a class="deletebtntext" href="{{ path('teams_delete', {'id' : t.id}) }}">Supprimer</a></span>
         </td>
     </tr>
   {% endfor %}

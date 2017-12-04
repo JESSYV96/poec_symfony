@@ -130,10 +130,12 @@ class PlayersController extends Controller
       ))
       ->add('team', EntityType::class, array(
         'class' => 'AppBundle:Teams',
-        'choice_label' => 'name'
+        'choice_label' => 'name',
+        'label' => 'Équipe :'
       ))
       ->add('picture', FileType::class, array(
-        'label' => 'Photo du joueur'
+        'label' => 'Photo du joueur',
+        'data_class' => null
       ))
       ->add('submit', SubmitType::class, array(
         'label' => 'Mettre à jour',
